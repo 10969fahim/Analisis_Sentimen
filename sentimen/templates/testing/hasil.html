@@ -1,0 +1,75 @@
+{% extends "app.html" %} {% load static %} {% block content %}
+<div class="container-fluid py-4">
+  <div class="row">
+    <h3>Hasil Klasifikasi</h3>
+    <div class="col-12">
+      {% if messages %} {% for msg in messages %}
+      <!--   -->
+      <div
+        class="alert alert-{{ msg.tags }} text-capitalize alert-dismissible fade show"
+        role="alert"
+      >
+        <h5 class="alert-heading">{{ msg.tags }}</h5>
+        <p>{{msg.message}}</p>
+      </div>
+      {% endfor %} {% endif %}
+
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Cleaning</h4>
+        </div>
+        <div class="card-body">
+          <p>{{cleaning}}</p>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-header">
+          <h4 class="card-title">CaseFolding</h4>
+        </div>
+        <div class="card-body">
+          <p>{{casefolding}}</p>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-header">
+          <h4 class="card-title">Tokenizing</h4>
+        </div>
+        <div class="card-body">
+          <p>{{tokenizing}}</p>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-header">
+          <h4 class="card-title">Stemming</h4>
+        </div>
+        <div class="card-body">
+          <p>{{stemming}}</p>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-header">
+          <h4 class="card-title">Stopword</h4>
+        </div>
+        <div class="card-body">
+          <p>{{stopword}}</p>
+        </div>
+      </div>
+      <div class="card mt-4">
+        <div class="card-header bg-success text-white">
+          <h4 class="card-title">Klasifikasi</h4>
+        </div>
+        <div class="card-body">
+          <p>Kelas: <b>{{kategori}}</b></p>
+          <br />
+          <!-- <b>Positif: {{positif}}</b><br>
+                <b>Negatif: {{negatif}}</b><br> -->
+          <h4><b>Waktu Eksekusi {{ waktu }} Detik</b></h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

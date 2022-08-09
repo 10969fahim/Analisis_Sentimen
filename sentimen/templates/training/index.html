@@ -1,0 +1,79 @@
+{% extends "app.html" %} {% load static %} {% block content %}
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-4">
+        <div class="card-header pb-0">
+          <h6>Data Latih</h6>
+          <a href="{% url 'add_latih' %}"
+            ><button class="btn btn-primary btn-sm ms-auto">Tambah</button></a
+          >
+        </div>
+        <div class="card-body px-2 pt-2 pb-2">
+          {% if messages %} {% for msg in messages %}
+          <!--   -->
+          <div
+            class="alert alert-{{ msg.tags }} text-capitalize alert-dismissible fade show"
+            role="alert"
+          >
+            <h5 class="alert-heading">{{ msg.tags }}</h5>
+            <p>{{msg.message}}</p>
+          </div>
+          {% endfor %} {% endif %}
+          <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              id="dataTable"
+              width="100%"
+              cellspacing="0"
+            >
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Tweet</th>
+                  <th>Kategori</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in data %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{item.komentar}}</td>
+                  <!-- <td>{{item.kategori}}</td> -->
+                  <td>{% if item.kategori == 1 %} Positif {% elif item.kategori == 2 %} Negatif {% else %} Netral {%endif%}
+                  </td>
+                  <td>
+                    <a
+                      class="btn btn-warning btn-icon-split"
+                      href="latih/edit/{{item.id}}"
+                    >
+                      <span class="icon text-white-50">
+                        <i class="fas fa-pencil-alt"></i>
+                      </span>
+                      <span class="text">Ubah</span>
+                    </a>
+                    <a
+                      class="btn btn-danger btn-icon-split"
+                      href="#"
+                      onclick="konfirmasi_modal('{% url 'latih_delete' id=item.id  %}', 'hapus', {{item.id}})"
+                      data-toggle="modal"
+                      data-target="#ModalHapus"
+                    >
+                      <span class="icon text-white-50">
+                        <i class="fas fa-trash"></i>
+                      </span>
+                      <span class="text">Hapus</span>
+                    </a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

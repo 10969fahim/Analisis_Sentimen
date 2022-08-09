@@ -1,0 +1,70 @@
+{% extends "app.html" %} {% load static %} {% block content %}
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="card container mb-4">
+        <div class="card-header pb-0">
+          <h6>Form Testing</h6>
+        </div>
+        <div class="card-body px-2 pt-2 pb-2">
+          <form
+            id="demo-form2"
+            method="POST"
+            action=""
+            data-parsley-validate
+            class="form-horizontal form-label-left"
+          >
+            {% csrf_token %} {% if messages %} {% for msg in messages %}
+            <!--   -->
+            <div
+              class="alert alert-{{ msg.tags }} text-capitalize alert-dismissible fade show"
+              role="alert"
+            >
+              <h5 class="alert-heading">{{ msg.tags }}</h5>
+              <p>{{msg.message}}</p>
+            </div>
+            {% endfor %} {% endif %}
+            <div class="item form-group">
+              <label
+                class="col-form-label col-md-3 col-sm-3 label-align"
+                for="first-name"
+                >Kata Kunci<span class="required">*</span>
+              </label>
+              <div class="col-md-12 col-sm-12">
+                <textarea
+                  name="komentar"
+                  id=""
+                  placeholder="isi Komentar disini"
+                  cols="30"
+                  rows="10"
+                  class="form-control"
+                ></textarea>
+              </div>
+            </div>
+            <div class="ln_solid"></div>
+            <div class="item form-group">
+              <div class="col-md-6 col-sm-6 offset-md-3">
+                <!-- <button class="btn btn-primary" type="button">Cancel</button> -->
+                <button class="btn btn-primary" type="reset">Reset</button>
+                <button type="submit" class="btn btn-success">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %} {% block script %}
+<!-- Page level plugins -->
+<script src="{% static 'assets/vendor/chart.js/Chart.min.js' %}"></script>
+<!-- Page level custom scripts -->
+<script src="{% static 'assets/js/demo/chart-area-demo.js' %}"></script>
+<script src="{% static 'assets/js/demo/chart-pie-demo.js' %}"></script>
+<script src="{% static 'assets/js/demo/datatables-demo.js' %}"></script>
+<script src="{% static 'assets/js/demo/chart-bar-demo.js' %}"></script>
+<!-- Page level plugins -->
+<script src="{% static 'assets/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'assets/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+{% endblock script %}

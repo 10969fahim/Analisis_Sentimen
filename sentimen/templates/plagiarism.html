@@ -1,0 +1,262 @@
+{% extends "app.html" %} {% load static %} {% block content %}
+<!-- Main Content -->
+<div id="content">
+  <div class="topbar-divider d-none d-sm-block"></div>
+  <!-- Topbar -->
+  <nav
+    class="navbar navbar-expand navbar-light bg-gradient-light topbar mb-4 static-top shadow"
+  >
+    <!-- Sidebar Toggle (Topbar) -->
+    <button
+      id="sidebarToggleTop"
+      class="btn btn-link d-md-none rounded-circle mr-3"
+    >
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Topbar Search -->
+    <h3 style="font-weight: 700; color: black">Deteksi Plagiarism</h3>
+    <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form> -->
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+      <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+      <li class="nav-item dropdown no-arrow d-sm-none">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="searchDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <i class="fas fa-search fa-fw"></i>
+        </a>
+        <!-- Dropdown - Messages -->
+        <div
+          class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+          aria-labelledby="searchDropdown"
+        >
+          <form class="form-inline mr-auto w-100 navbar-search">
+            <div class="input-group">
+              <input
+                type="text"
+                class="form-control bg-light border-0 small"
+                placeholder="Search for..."
+                aria-label="Search"
+                aria-describedby="basic-addon2"
+              />
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+      <!-- <div class="topbar-divider d-none d-sm-block" style="color: black"></div> -->
+
+      <!-- Nav Item - User Information -->
+      <li class="nav-item dropdown no-arrow">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="userDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span class="mr-2 d-none d-lg-inline" style="color: black"
+            >Hallo, Admin</span
+          >
+          <img
+            class="rounded-circle"
+            src="{% static 'assets/img/undraw_posting_photo.svg'%}"
+            width="40px"
+            height="40px"
+          />
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- End of Topbar -->
+  <!-- Begin Page Content -->
+  <div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <div class="d-grid gap-5 d-md-flex justify-content-md-between">
+          <h5 class="m-0 font-weight-bold text-primary">
+            Mulai Deteksi Plagiarism Learning Journal Mahasiswa
+          </h5>
+          <form>
+            <div class="d-grid d-md-flex">
+              <div class="form-group" style="padding-right: 10px; width: 150px">
+                <select class="form-control" name="semester" id="semester">
+                  <option value="" selected disabled>Semester</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                </select>
+              </div>
+              <div class="form-group" style="padding-right: 10px; width: 150px">
+                <select class="form-control" name="matkul" id="matkul">
+                  <option selected disabled>Mata Kuliah</option>
+                  {% for item in matkul %}
+                  <option value="{{item.id}}">{{item.nama}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+              <div class="form-group" style="padding-right: 10px; width: 150px">
+                <select class="form-control" name="minggu" id="minggu">
+                  <option value="" selected disabled>Minggu Ke</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                </select>
+              </div>
+
+              <!-- <button type="button" class="btn btn-primary">Filter</button> -->
+              <div>
+                <button
+                  type="submit"
+                  style="background-color: #0b0641; width: 85px"
+                  class="btn btn-primary btn-flat"
+                >
+                  <span class="icon text-white-50">
+                    <i class="fas fa-filter"></i>
+                  </span>
+                  <span class="text">Filter</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- DataTales Example -->
+      {% comment %} <div class="card-header py-2">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <div class="dataTables_length" id="dataTable_length">
+              <label
+                >Show
+                <select
+                  name="dataTable_length"
+                  aria-controls="dataTable"
+                  class="custom-select custom-select-sm form-control form-control-sm"
+                >
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select>
+              </label>
+              entries
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <div id="dataTable_filter" class="dataTables_filter">
+              <form>
+                <label
+                  >Search:<input
+                    type="text"
+                    class="form-control form-control-sm"
+                    aria-controls="dataTable"
+                    name="q"
+                /></label>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div> {% endcomment %}
+      <div class="card shadow mb-4">
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              class="table table-bordered"
+              id="dataTable"
+              width="100%"
+              cellspacing="0"
+            >
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIM 1</th>
+                  <th>Nama Mahasiswa 1</th>
+                  <th>NIM 2</th>
+                  <th>Nama Mahasiswa 2</th>
+                  <th>Persentase</th>
+                  {% comment %}
+                  <th>Aksi</th>
+                  {% endcomment %}
+                </tr>
+              </thead>
+              <tbody>
+                {% for item in plagiarism %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{item.nim_q1}}</td>
+                  <td>{{item.nama_q1}}</td>
+                  <td>{{item.nim_q2}}</td>
+                  <td>{{item.nama_q2}}</td>
+                  <td>{{item.score}}%</td>
+
+                  {% comment %}
+                  <a
+                    href=""
+                    class="btn btn-success btn-icon-split"
+                    data-toggle="modal"
+                    data-target="#myModal"
+                  >
+                    <span class="icon text-white-50">
+                      <i class="fas fa-info-circle"></i>
+                    </span>
+                    <span class="text">Lihat Detail</span>
+                  </a>
+                  {% endcomment %}
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- End of Pop-Up Detail Deteksi Plagiarism -->
+    </div>
+    {% endblock content %} {% block script %}
+    <!-- Page level plugins -->
+    <script src="{% static 'assets/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+    {% endblock script %}
+  </div>
+</div>

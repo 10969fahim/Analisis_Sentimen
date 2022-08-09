@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <style type="text/css">
+    .bg-customm {
+      background-color: #0091dc;
+    }
+  </style>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Sentimen Analisis </title>
+</head>
+
+<!-- Custom fonts for this template-->
+<link
+  href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+  rel="stylesheet" />
+
+  <!--     Fonts and icons     -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+  <!-- Nucleo Icons -->
+  <link href="{% static 'assets' %}/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="{% static 'assets' %}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- Font Awesome Icons -->
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="{% static 'assets' %}/css/nucleo-svg.css" rel="stylesheet" />
+  <!-- CSS Files -->
+  <link id="pagestyle" href="{% static 'assets' %}/css/argon-dashboard.css?v=2.0.0" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
+{% block style %} {% endblock %}
+</head>
+
+<body class="g-sidenav-show  bg-gray-100">
+  <div class="min-height-300 bg-primary position-absolute w-100"></div>
+  {% block body %} {% endblock %}
+  
+  
+  <div class="modal fade" id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="m-0 font-weight-bold text-primary">
+            Hapus Data
+          </h4>
+        </div>
+        <div class="modal-body">
+          <p>Apakah Anda yakin mau menghapus data ?<b></b> ?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-dark btn-flat" data-dismiss="modal">
+            Kembali
+          </button>
+          <!-- <a class="btn btn-primary btn-flat" type="button" id="delete_link" href="">Hapus</a> -->
+          <a type="button" class="btn btn-primary btn-flat" id="delete_link" href="">Hapus</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- jQuery -->
+  <script src="{% static '' %}assets/js/core/popper.min.js"></script>
+  <script src="{% static '' %}assets/js/core/bootstrap.min.js"></script>
+  <script src="{% static '' %}assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="{% static '' %}assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="{% static 'assets' %}/jquery/dist/jquery.min.js"></script>
+
+  <script src="{% static 'assets' %}/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+  <script src="{% static 'assets' %}/fastclick/lib/fastclick.js"></script>
+  
+
+  <script type="text/javascript">
+    $('.table').DataTable();
+    function konfirmasi_modal(delete_url, tipe, id) {
+      console.log("delete_url");
+      if (tipe == "hapus") {
+        $("#ModalHapus").modal("show", {
+          backdrop: "static",
+        });
+        document.getElementById("delete_link").setAttribute("href", delete_url);
+      } else {
+        $("#ModalEdit" + id).modal("show", {
+          backdrop: "static",
+        });
+        // document.getElementById("delete_link").setAttribute("href", delete_url);
+      }
+    }
+    //   $(".alert").delay(4000).slideUp(200, function() {
+    //     $(this).alert('close');
+    // });
+  </script>
+  <!-- Page Specific JS File -->
+  
+</body>
+
+</html>
